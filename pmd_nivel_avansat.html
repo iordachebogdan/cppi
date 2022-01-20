@@ -1842,6 +1842,242 @@ JOIN(2, 3)  =&gt; {1, 2, 3, 4} (nu se intampla nimic)
                                                             class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span></span>).
         </p>
         <h3 id="egal-infoarena">6. Egal (<a href="https://www.infoarena.ro/problema/egal">infoarena</a>)</h3>
+        <p>Pentru a rezolva aceasta problema avem nevoie mai intai sa introducem/recapitulam structura de date <a
+                href="https://en.wikipedia.org/wiki/Hash_table"><em>hash map</em></a>, implementata in biblioteca
+            standard <code>STL</code> in clasa <code>unordered_map</code> (detalii <a
+                href="https://www.cplusplus.com/reference/unordered_map/unordered_map/">aici</a>).</p>
+        <p>Un “map” este de fapt un dictionar ce contine chei, carora le sunt asociate valori. Exemplu:</p>
+        <pre><code>{
+	cheie_1: valoare_1,
+	cheie_2: valoare_2,
+	...
+}
+</code></pre>
+        <p>Un hash map permite urmatoarele operatii in complexitate constanta, aproximativ <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo stretchy="false">(</mo>
+                                    <mn>1</mn>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(1)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.02778em;" class="mord mathnormal">O</span><span
+                                class="mopen">(</span><span class="mord">1</span><span
+                                class="mclose">)</span></span></span></span></span>:</p>
+        <ul>
+            <li>adauga o cheie noua la dictionar cu o anumita valoare</li>
+            <li>schimba valoarea pentru o anumita cheie</li>
+            <li>verifica daca o cheie anume exista in dictionar</li>
+            <li>sterge o cheie din dictionar impreuna cu valoarea ei</li>
+        </ul>
+        <p>In <code>C++</code> putem defini un hash map astfel:</p>
+        <pre class=" language-cpp"><code class="prism  language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unordered_map&gt;</span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+unordered_map<span class="token operator">&lt;</span>T1<span class="token punctuation">,</span> T2<span class="token operator">&gt;</span> hm<span class="token punctuation">;</span>
+</code></pre>
+        <p>Unde <code>T1</code> si <code>T2</code> sunt tipurile de date asociate cheilor, respectiv valorilor.
+            <code>T2</code> poate fi orice tip de date oricat de complex (<code>int</code>, <code>char*</code>,
+            <code>vector&lt;vector&lt;int&gt;&gt;</code>, s.a.m.d.), in timp ce <code>T1</code> trebuie sa fie un tip
+            pentru care o functie de hash exista implementata. Puteti furniza si voi o astfel de functie pentru orice
+            tip doriti, dar aceste detalii depasesc scopul acestui material. <code>STL</code> are deja functii hash
+            preimplementate pentru tipuri standard (numere intregi <code>int</code>, <code>long long</code>, siruri de
+            caractere reprezentate prin clasa <code>string</code>, etc.)</p>
+        <p>Pentru a demonstra cum putem folosi <code>unordered_map</code>, vom realiza urmatoarele operatii pe un hash
+            map cu chei de tip <code>string</code> si valori de tip <code>int</code>:</p>
+        <ul>
+            <li>insereaza cheia “abc” cu valoarea 5, cheia “def” cu valoarea 7, cheia “foo” cu valoarea -5</li>
+            <li>schimba valoarea cheii “foo” in 20</li>
+            <li>afiseaza valoarea cheii “def”</li>
+            <li>sterge cheia “abc” din dictionar</li>
+            <li>verifica faptul ca “abc” nu mai este in dictionar</li>
+            <li>afiseaza toate perechile cheie-valoare</li>
+        </ul>
+        <pre class=" language-cpp"><code class="prism  language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unorderd_map&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+unordered_map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&gt;</span> hm<span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token comment">// adaugam chei si valori la dictionar</span>
+hm<span class="token punctuation">[</span><span class="token string">"abc"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+hm<span class="token punctuation">[</span><span class="token string">"def"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">7</span><span class="token punctuation">;</span>
+hm<span class="token punctuation">[</span><span class="token string">"foo"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token comment">// schimbam valoarea asociata unei chei</span>
+hm<span class="token punctuation">[</span><span class="token string">"foo"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+<span class="token comment">// accesam valoarea unei chei</span>
+cout <span class="token operator">&lt;&lt;</span> hm<span class="token punctuation">[</span><span class="token string">"def"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">// stergem o cheie din dictionar</span>
+hm<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token string">"abc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// afisam daca "abc" mai este in dictionar</span>
+cout <span class="token operator">&lt;&lt;</span> hm<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token string">"abc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// afiseaza 0</span>
+<span class="token comment">// parcurgem toate perechile cheie valoare si le afisam</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> pair<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&gt;</span><span class="token operator">&amp;</span> p <span class="token operator">:</span> hm<span class="token punctuation">)</span>
+	cout <span class="token operator">&lt;&lt;</span> p<span class="token punctuation">.</span>first <span class="token operator">&lt;&lt;</span> <span class="token string">"-&gt;"</span> <span class="token operator">&lt;&lt;</span> p<span class="token punctuation">.</span>second <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span><span class="token punctuation">;</span>
+</code></pre>
+        <p>Ne intoarcem acum la problema <em>Egal</em>.<br>
+            Problema se poate rezolva prinr-o simpla parcurgere in adancime (DFS), in care de fiecare data cand terminam
+            de parcurs subarborele unui nod si ne intoarcem din recursivitate vrem sa avem calculat atat un dictionar
+            care contine pentru fiecare cheie prezenta in subarbore numarul ei de aparitii, cat si care este cheia ce
+            apare de cele mai multe ori in subarbore.</p>
+        <p>Pentru frunze, dictionarul contine doar cheia din frunza, iar valoarea asociata este <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>1</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">1</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">1</span></span></span></span></span>.</p>
+        <p>Pentru orice alt nod, putem initializa dictionarul sau introducand cheia sa cu valoarea asociata <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>1</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">1</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">1</span></span></span></span></span>. Parcurgem acum fiii dictionarului si
+            apelam recursiv pentru fiecare functia DFS. Cand ne intoarcem dintr-un fiu, cunoastem deja dictionarul
+            asociat subarborelui sau. Ramane sa reunim dictionarul curent al parintelui cu dictionarul fiului. Pentru a
+            face acest lucru eficient, vom parcurge dictionarul mai mic (cu mai putine chei) si vom updata cu valorile
+            acestuia dictionarul mai mare. Astfel vom face un numar de operatii direct proportional cu dimensiunea
+            dictionarului mai mic. Continuam apoi cu restul fiilor.</p>
+        <p>Ce complexitate are aceasta solutie? Pentru a raspunde trebuie mai intai sa obervam ca dimensiunea maxima
+            posibila a unui dictionar calculat pentru un subarbore este chiar dimensiunea subarborelui.</p>
+        <p>Complexitatea poate fi determinata numarand cate operatii de “mutare” a unor valori dintr-un dictionar in
+            altul se efectueaza. Vom urmari cheia asociata unei frunze si vom incerca sa o mutam de cat mai multe ori
+            dintr-un dictionar in altul.</p>
+        <p>Este clar ca pentru a fi mutata din dictionarul curent, trebuie ca acesta sa fie reunit cu un dictionar cel
+            putin la fel de mare. Astfel la prima mutare trebuie reunit cu un dictionar de dimensiune minim <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>1</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">1</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">1</span></span></span></span></span>, apoi cu unul de dimensiune minim
+            <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>2</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">2</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">2</span></span></span></span></span>, apoi minim <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>4</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">4</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">4</span></span></span></span></span> s.a.m.d. Insa stim ca aceste
+            dictionare nu pot avea dimensiunea mai mare decat <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">N</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.68333em; vertical-align: 0em;"></span><span
+                                style="margin-right: 0.10903em;"
+                                class="mord mathnormal">N</span></span></span></span></span> (numarul de valori), deci
+            in concluzie aceasta cheie nu poate fi mutata de mai mult de <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>l</mi>
+                                    <mi>o</mi>
+                                    <mi>g</mi>
+                                    <mi>N</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(logN)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.02778em;" class="mord mathnormal">O</span><span
+                                class="mopen">(</span><span style="margin-right: 0.01968em;"
+                                class="mord mathnormal">l</span><span class="mord mathnormal">o</span><span
+                                style="margin-right: 0.03588em;" class="mord mathnormal">g</span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mclose">)</span></span></span></span></span> ori.</p>
+        <p>Obtinem complexitatea finala: <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>N</mi>
+                                    <mi>l</mi>
+                                    <mi>o</mi>
+                                    <mi>g</mi>
+                                    <mi>N</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(NlogN)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.02778em;" class="mord mathnormal">O</span><span
+                                class="mopen">(</span><span style="margin-right: 0.01968em;"
+                                class="mord mathnormal">Nl</span><span class="mord mathnormal">o</span><span
+                                style="margin-right: 0.03588em;" class="mord mathnormal">g</span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mclose">)</span></span></span></span></span>.</p>
+        <p><strong>Atentie!</strong> Atunci cand reuniti dictionarul nodului curent cu dictionare ale fiilor, nu faceti
+            direct atribuiri de map-uri, intrucat complexitatea unei atribuiri este proportionala cu dimensiunea
+            dictionarului.</p>
+        <p>O modalitate de a implementa corect este sa alocam de la inceput cate un map pentru fiecare nod, si o lista
+            de indici care indica pentru fiecare nod care este map-ul sau, iar in cazul in care trebuie sa actualizam
+            map-ul fiului cu valorile din map-ul nodului curent, vom schimba indicele asociat nodului curent pentru a
+            indica faptul ca de acum map-ul nodului curent este map-ul acelui fiu.</p>
+        <pre class=" language-cpp"><code class="prism  language-cpp">unordered_map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&gt;</span> hm<span class="token punctuation">[</span>MAXN<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> indice<span class="token punctuation">[</span>MAXN<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token comment">// initial</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> N<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+	indice<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token punctuation">;</span> <span class="token comment">// nodul i are asocial map-ul i</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token comment">// vrem sa reunim map-ul lui nod cu map-ul lui fiu</span>
+hm<span class="token punctuation">[</span>indice<span class="token punctuation">[</span>nod<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// map-ul lui nod</span>
+hm<span class="token punctuation">[</span>indice<span class="token punctuation">[</span>fiu<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// map-ul fiului</span>
+<span class="token comment">// daca "varsam" valorile din map-ul fiului in map-ul nodului</span>
+<span class="token comment">//   indice[nod] ramane neschimbat</span>
+<span class="token comment">// altfel</span>
+indice<span class="token punctuation">[</span>nod<span class="token punctuation">]</span> <span class="token operator">=</span> indice<span class="token punctuation">[</span>fiu<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// acum map-ul nodului este map-ul fiului</span>
+</code></pre>
+        <p>O solutie mai eleganta se poate obtine folosind pointeri. De fapt, solutia de mai sus doar simuleaza intr-un
+            mod rudimentar cum functioneaza memoria si adresarea prin pointeri. O astfel de implementare gasiti <a
+                href="https://www.infoarena.ro/job_detail/2836828?action=view-source">aici</a>.</p>
     </div>
 </body>
 
