@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pmd_grupa_avansata</title>
+    <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+    <div class="stackedit__html">
+        <h1 id="paduri-de-multimi-disjuncte">Paduri de Multimi Disjuncte</h1>
+        <p>Consideram urmatoarea problema: Se dau <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">N</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.68333em; vertical-align: 0em;"></span><span
+                                style="margin-right: 0.10903em;"
+                                class="mord mathnormal">N</span></span></span></span></span> multimi de numere, initial
+            fiecare multime <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>i</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">i</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.65952em; vertical-align: 0em;"></span><span
+                                class="mord mathnormal">i</span></span></span></span></span> continand un singur
+            element, mai exact elementul <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>i</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">i</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.65952em; vertical-align: 0em;"></span><span
+                                class="mord mathnormal">i</span></span></span></span></span>. Asupra acestor multimi se
+            efectueaza urmatoarele tipuri de operatii:</p>
+        <ul>
+            <li><code>JOIN(x, y)</code>: daca valorile <span class="katex--inline"><span class="katex"><span
+                            class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mi>x</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">x</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span
+                                    class="mord mathnormal">x</span></span></span></span></span> si <span
+                    class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                                xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mi>y</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">y</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height: 0.625em; vertical-align: -0.19444em;"></span><span
+                                    style="margin-right: 0.03588em;"
+                                    class="mord mathnormal">y</span></span></span></span></span> nu se afla in aceeasi
+                multime, sa se reuneasca multimea lui <span class="katex--inline"><span class="katex"><span
+                            class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mi>x</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">x</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span
+                                    class="mord mathnormal">x</span></span></span></span></span> si multimea lui <span
+                    class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                                xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mi>y</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">y</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height: 0.625em; vertical-align: -0.19444em;"></span><span
+                                    style="margin-right: 0.03588em;"
+                                    class="mord mathnormal">y</span></span></span></span></span></li>
+            <li><code>QUERY(x, y)</code>: sa se raspunda cu “DA” sau “NU” daca valorile <span
+                    class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                                xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mi>x</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">x</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span
+                                    class="mord mathnormal">x</span></span></span></span></span> si <span
+                    class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                                xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                    <mrow>
+                                        <mi>y</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">y</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height: 0.625em; vertical-align: -0.19444em;"></span><span
+                                    style="margin-right: 0.03588em;"
+                                    class="mord mathnormal">y</span></span></span></span></span> se afla in aceeasi
+                multime.</li>
+        </ul>
+        <p>Exemplu:</p>
+        <pre><code>N = 4; initial multimile sunt: {1}, {2}, {3}, {4}
+JOIN(1, 2)  =&gt; {1, 2}, {3}, {4}
+JOIN(3, 4)  =&gt; {1, 2} {3, 4}
+QUERY(1, 3) =&gt; NU (1 si 3 nu sunt in aceeasi multime)
+QUERY(1, 2) =&gt; DA (1 si 2 sunt in aceeasi multime)
+JOIN(1, 3)  =&gt; {1, 2, 3, 4}
+QUERY(2, 4) =&gt; DA
+JOIN(2, 3)  =&gt; {1, 2, 3, 4} (nu se intampla nimic)
+</code></pre>
+        <p>Pentru a retine structura multimilor disjunte ne putem folosi de o multime de arbori (de aici termenul de
+            “padure”). Spre exemplu, daca consideram multimea <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mo stretchy="false">{</mo>
+                                    <mn>1</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>2</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>3</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>4</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>5</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>6</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>7</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>8</mn>
+                                    <mo stretchy="false">}</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\{1,2,3,4,5,6,7,8\}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">{</span><span
+                                class="mord">1</span><span class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">2</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">3</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">4</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">5</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">6</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">7</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">8</span><span
+                                class="mclose">}</span></span></span></span></span> cu submultimile disjunte <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mo stretchy="false">{</mo>
+                                    <mn>1</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>3</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>4</mn>
+                                    <mo stretchy="false">}</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\{1, 3, 4\}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">{</span><span
+                                class="mord">1</span><span class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">3</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">4</span><span
+                                class="mclose">}</span></span></span></span></span>, <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mo stretchy="false">{</mo>
+                                    <mn>2</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>5</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>7</mn>
+                                    <mo stretchy="false">}</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\{2,5,7\}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">{</span><span
+                                class="mord">2</span><span class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">5</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">7</span><span
+                                class="mclose">}</span></span></span></span></span> si <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mo stretchy="false">{</mo>
+                                    <mn>6</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>8</mn>
+                                    <mo stretchy="false">}</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\{6, 8\}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">{</span><span
+                                class="mord">6</span><span class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">8</span><span
+                                class="mclose">}</span></span></span></span></span>, o posibila structura a arborilor
+            este urmatoarea:</p>
+        <p><img src="https://www.pbinfo.ro/resurse/9dc152/articole/grafuri/pmj/padure-1.png"
+                alt="enter image description here"><br>
+            Cum putem salva o astfel de structura in memorie? Folosind un vector de parinti (<span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>T</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>i</mi>
+                                    <mo stretchy="false">]</mo>
+                                    <mo>=</mo>
+                                    <mi>j</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">T[i] = j</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.13889em;" class="mord mathnormal">T</span><span
+                                class="mopen">[</span><span class="mord mathnormal">i</span><span
+                                class="mclose">]</span><span class="mspace"
+                                style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace"
+                                style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut"
+                                style="height: 0.85396em; vertical-align: -0.19444em;"></span><span
+                                style="margin-right: 0.05724em;"
+                                class="mord mathnormal">j</span></span></span></span></span> daca <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>j</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">j</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.85396em; vertical-align: -0.19444em;"></span><span
+                                style="margin-right: 0.05724em;"
+                                class="mord mathnormal">j</span></span></span></span></span> este parintele lui <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>i</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">i</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.65952em; vertical-align: 0em;"></span><span
+                                class="mord mathnormal">i</span></span></span></span></span> in arbore, sau <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>T</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>i</mi>
+                                    <mo stretchy="false">]</mo>
+                                    <mo>=</mo>
+                                    <mn>0</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">T[i]=0</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.13889em;" class="mord mathnormal">T</span><span
+                                class="mopen">[</span><span class="mord mathnormal">i</span><span
+                                class="mclose">]</span><span class="mspace"
+                                style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace"
+                                style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">0</span></span></span></span></span> daca <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>i</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">i</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.65952em; vertical-align: 0em;"></span><span
+                                class="mord mathnormal">i</span></span></span></span></span> este radacina de arbore).
+        </p>
+        <p>Pentru exemplul de mai sus vectorul de parinti ar fi <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mo stretchy="false">[</mo>
+                                    <mn>0</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>5</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>4</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>1</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>0</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>0</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>5</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>6</mn>
+                                    <mo stretchy="false">]</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">[0, 5, 4, 1, 0, 0, 5, 6]</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">[</span><span
+                                class="mord">0</span><span class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">5</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">4</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">1</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">0</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">0</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">5</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">6</span><span
+                                class="mclose">]</span></span></span></span></span>.</p>
+        <p>Acum sa presupunem ca vrem sa reunim multimea lui <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>8</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">8</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">8</span></span></span></span></span> cu multimea lui <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>7</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">7</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">7</span></span></span></span></span>. Acest lucru il vom face unind
+            radacina arborelui din care face parte <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>8</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">8</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">8</span></span></span></span></span> cu radacina arborelui din care face
+            parte <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>7</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">7</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">7</span></span></span></span></span>. Pentru a determina radacina arborelui
+            din care face parte un nod, putem folosi urmatoarea functie:</p>
+        <pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">int</span> <span class="token function">get_root</span><span class="token punctuation">(</span><span class="token keyword">int</span> node<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">while</span> <span class="token punctuation">(</span>T<span class="token punctuation">[</span>node<span class="token punctuation">]</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span>  <span class="token comment">// mergem din parinte in parinte</span>
+		node <span class="token operator">=</span> T<span class="token punctuation">[</span>node<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> node<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+        <p>Determinam astfel ca radacina pentru <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>7</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">7</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">7</span></span></span></span></span> este <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>5</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">5</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">5</span></span></span></span></span>, iar pentru <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>8</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">8</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">8</span></span></span></span></span> este <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>6</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">6</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">6</span></span></span></span></span>. Alipirea o putem face usor prin
+            atribuirea <code>T[6] = 5</code>, obtinand structura urmatoare:</p>
+        <p><img src="https://www.pbinfo.ro/resurse/9dc152/articole/grafuri/pmj/padure-2.png"
+                alt="enter image description here"><br>
+            Nu am specificat inca la operatia <code>JOIN</code> care dintre radacini este alipita celeilalte. Pentru a
+            obtine complexitatea optima vom lega mereu radacina arborelui cu mai putine noduri de radacina arborelui cu
+            mai multe noduri (vom demonstra mai tarziu).</p>
+        <p>Pentru simplificarea implementarii vom salva in <code>T[i]</code>, daca <code>i</code> este radacina, numarul
+            de noduri din arborele cu radacina in <code>i</code> (cu semnul <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mo>−</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">-</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.66666em; vertical-align: -0.08333em;"></span><span
+                                class="mord">−</span></span></span></span></span>, pentru a deosebi aceasta valoare de
+            valorile efective ale parintilor). Deci vectorul de parinti pentru ultima structura de arbori ar fi: <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mo stretchy="false">[</mo>
+                                    <mo>−</mo>
+                                    <mn>3</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>5</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>4</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>1</mn>
+                                    <mo separator="true">,</mo>
+                                    <mo>−</mo>
+                                    <mn>5</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>5</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>5</mn>
+                                    <mo separator="true">,</mo>
+                                    <mn>6</mn>
+                                    <mo stretchy="false">]</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">[-3, 5, 4, 1, -5, 5, 5, 6]</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">[</span><span
+                                class="mord">−</span><span class="mord">3</span><span class="mpunct">,</span><span
+                                class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">5</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">4</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">1</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">−</span><span
+                                class="mord">5</span><span class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">5</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">5</span><span
+                                class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span class="mord">6</span><span
+                                class="mclose">]</span></span></span></span></span>.</p>
+        <p>Functia <code>get_root</code> ramane neschimbata, iar operatia <code>JOIN</code> o putem implementa astfel:
+        </p>
+        <pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">void</span> <span class="token function">join</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> y<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">int</span> root_x <span class="token operator">=</span> <span class="token function">get_root</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// radacina arborelui lui x</span>
+	<span class="token keyword">int</span> root_y <span class="token operator">=</span> <span class="token function">get_root</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// radacina arborelui lui y</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>root_x <span class="token operator">==</span> root_y<span class="token punctuation">)</span>  <span class="token comment">// sunt deja in acelasi arbore</span>
+		<span class="token keyword">return</span><span class="token punctuation">;</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>T<span class="token punctuation">[</span>root_x<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> T<span class="token punctuation">[</span>root_y<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token comment">// arborele lui x are mai multe noduri</span>
+		T<span class="token punctuation">[</span>root_x<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> T<span class="token punctuation">[</span>root_y<span class="token punctuation">]</span><span class="token punctuation">;</span>
+		T<span class="token punctuation">[</span>root_y<span class="token punctuation">]</span> <span class="token operator">=</span> root_x<span class="token punctuation">;</span>  <span class="token comment">// legam arborele lui y de arborele lui x</span>
+	<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+		T<span class="token punctuation">[</span>root_y<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> T<span class="token punctuation">[</span>root_x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+		T<span class="token punctuation">[</span>root_x<span class="token punctuation">]</span> <span class="token operator">=</span> root_y<span class="token punctuation">;</span>  <span class="token comment">// legam arborele lui x de arborele lui y</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+        <p>Iar pentru <code>QUERY</code>:</p>
+        <pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">bool</span> <span class="token function">query</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> y<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token comment">// x si y sunt in acelasi arbore daca au aceeasi radacina</span>
+	<span class="token keyword">return</span> <span class="token function">get_root</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token function">get_root</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+        <p>Complexitatea acestor operatii este strict legata de numarul de iteratii efectuate de functia
+            <code>get_root</code> (adancimea la care se afla nodul in arbore). Vom incerca sa construim un caz in care
+            numarul de iteratii este cat mai mare posibil.</p>
+        <p>Plecam de la un singur nod (initial singur in arbore). Functia <code>get_root</code> apelata pentru acest nod
+            se opreste dupa o iteratie. Pentru a duce nodul nostru la adancime <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>2</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">2</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">2</span></span></span></span></span>, trebuie ca arborele sau sa fie legat
+            de un alt arbore in urma unui <code>JOIN</code>. Dar un arbore poate fi legat doar de un arbore cu cel putin
+            la fel de multe noduri, deci va trebui legat de un arbore cu minim un nod.</p>
+        <p>Acum nodul nostru se afla la adancime <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>2</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">2</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">2</span></span></span></span></span> intr-un arbore cu minim <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>2</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">2</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">2</span></span></span></span></span> noduri. Pentru a mai creste adancimea
+            cu o unitate trebuie ca acest arbore sa fie legat de un altul, care are deci cel putin <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>2</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">2</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">2</span></span></span></span></span> noduri (trebuie sa fie cel putin la
+            fel de “greu”).</p>
+        <p>Continuand rationamentul, cand nodul va ajunge la adancime <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>k</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">k</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.69444em; vertical-align: 0em;"></span><span
+                                style="margin-right: 0.03148em;"
+                                class="mord mathnormal">k</span></span></span></span></span> se va afla intr-un arbore
+            cu minim <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <msup>
+                                        <mn>2</mn>
+                                        <mi>k</mi>
+                                    </msup>
+                                </mrow>
+                                <annotation encoding="application/x-tex">2^k</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.849108em; vertical-align: 0em;"></span><span class="mord"><span
+                                    class="mord">2</span><span class="msupsub"><span class="vlist-t"><span
+                                            class="vlist-r"><span class="vlist" style="height: 0.849108em;"><span
+                                                    class="" style="top: -3.063em; margin-right: 0.05em;"><span
+                                                        class="pstrut" style="height: 2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            style="margin-right: 0.03148em;"
+                                                            class="mord mathnormal mtight">k</span></span></span></span></span></span></span></span></span></span></span></span>
+            noduri. Dar noi avem <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">N</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.68333em; vertical-align: 0em;"></span><span
+                                style="margin-right: 0.10903em;"
+                                class="mord mathnormal">N</span></span></span></span></span> noduri in total, deci <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>k</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">k</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.69444em; vertical-align: 0em;"></span><span
+                                style="margin-right: 0.03148em;"
+                                class="mord mathnormal">k</span></span></span></span></span> nu poate depasi <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>l</mi>
+                                    <mi>o</mi>
+                                    <msub>
+                                        <mi>g</mi>
+                                        <mn>2</mn>
+                                    </msub>
+                                    <mi>N</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">log_2N</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.88888em; vertical-align: -0.19444em;"></span><span
+                                style="margin-right: 0.01968em;" class="mord mathnormal">l</span><span
+                                class="mord mathnormal">o</span><span class="mord"><span
+                                    style="margin-right: 0.03588em;" class="mord mathnormal">g</span><span
+                                    class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height: 0.301108em;"><span class=""
+                                                    style="top: -2.55em; margin-left: -0.03588em; margin-right: 0.05em;"><span
+                                                        class="pstrut" style="height: 2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mtight">2</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height: 0.15em;"><span
+                                                    class=""></span></span></span></span></span></span><span
+                                style="margin-right: 0.10903em;"
+                                class="mord mathnormal">N</span></span></span></span></span>. Ajungem la concluzia ca
+            pentru toate operatiile definite complexitatea este <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>l</mi>
+                                    <mi>o</mi>
+                                    <mi>g</mi>
+                                    <mtext>&nbsp;</mtext>
+                                    <mi>N</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(log\ N)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.02778em;" class="mord mathnormal">O</span><span
+                                class="mopen">(</span><span style="margin-right: 0.01968em;"
+                                class="mord mathnormal">l</span><span class="mord mathnormal">o</span><span
+                                style="margin-right: 0.03588em;" class="mord mathnormal">g</span><span
+                                class="mspace">&nbsp;</span><span style="margin-right: 0.10903em;"
+                                class="mord mathnormal">N</span><span
+                                class="mclose">)</span></span></span></span></span>.</p>
+        <p>O alta optimizare pe care o putem face tine tot de functia <code>get_root</code>. Odata ce parcurgem lantul
+            de la nodul cu care a fost apelata functia, pana la radacina, putem lega toate nodurile de pe drum direct la
+            radacina. De acum inainte, la orice apel al functiei <code>get_root</code> pentru oricare dintre aceste
+            noduri, dintr-un singur pas ajungem la radacina (mult mai repede).</p>
+        <p>Mai jos aveti un exemplu de compresie a drumului dupa un apel de <code>get_root</code> facut pentru nodul
+            <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>7</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">7</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">7</span></span></span></span></span>:<br>
+            <img src="https://cp-algorithms.com/data_structures/DSU_path_compression.png"
+                alt="enter image description here"><br>
+            Pentru a realiza aceasta optimizare functia <code>get_root</code> devine:
+        </p>
+        <pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">int</span> <span class="token function">get_root</span><span class="token punctuation">(</span><span class="token keyword">int</span> node<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">int</span> aux <span class="token operator">=</span> node<span class="token punctuation">;</span>
+	<span class="token keyword">while</span> <span class="token punctuation">(</span>T<span class="token punctuation">[</span>node<span class="token punctuation">]</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+		node <span class="token operator">=</span> T<span class="token punctuation">[</span>node<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token keyword">int</span> root <span class="token operator">=</span> node<span class="token punctuation">;</span>
+	<span class="token comment">// mai parcurg odata acelasi drum si unesc nodurile de root</span>
+	node <span class="token operator">=</span> aux<span class="token punctuation">;</span>
+	<span class="token keyword">while</span> <span class="token punctuation">(</span>node <span class="token operator">!=</span> root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		aux <span class="token operator">=</span> T<span class="token punctuation">[</span>node<span class="token punctuation">]</span><span class="token punctuation">;</span>
+		T<span class="token punctuation">[</span>node<span class="token punctuation">]</span> <span class="token operator">=</span> root<span class="token punctuation">;</span>
+		node <span class="token operator">=</span> aux<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> root
+<span class="token punctuation">}</span>
+</code></pre>
+        <p>Aceasta optimizare duce complexitatea medie a tuturor operatiilor la <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>l</mi>
+                                    <mi>o</mi>
+                                    <msup>
+                                        <mi>g</mi>
+                                        <mo>∗</mo>
+                                    </msup>
+                                    <mi>N</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(log^*N)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.02778em;" class="mord mathnormal">O</span><span
+                                class="mopen">(</span><span style="margin-right: 0.01968em;"
+                                class="mord mathnormal">l</span><span class="mord mathnormal">o</span><span
+                                class="mord"><span style="margin-right: 0.03588em;"
+                                    class="mord mathnormal">g</span><span class="msupsub"><span class="vlist-t"><span
+                                            class="vlist-r"><span class="vlist" style="height: 0.688696em;"><span
+                                                    class="" style="top: -3.063em; margin-right: 0.05em;"><span
+                                                        class="pstrut" style="height: 2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mbin mtight">∗</span></span></span></span></span></span></span></span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mclose">)</span></span></span></span></span>, unde <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>l</mi>
+                                    <mi>o</mi>
+                                    <msup>
+                                        <mi>g</mi>
+                                        <mo>∗</mo>
+                                    </msup>
+                                </mrow>
+                                <annotation encoding="application/x-tex">log^*</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.88888em; vertical-align: -0.19444em;"></span><span
+                                style="margin-right: 0.01968em;" class="mord mathnormal">l</span><span
+                                class="mord mathnormal">o</span><span class="mord"><span
+                                    style="margin-right: 0.03588em;" class="mord mathnormal">g</span><span
+                                    class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                style="height: 0.688696em;"><span class=""
+                                                    style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut"
+                                                        style="height: 2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mbin mtight">∗</span></span></span></span></span></span></span></span></span></span></span></span>
+            se numeste <a href="https://en.wikipedia.org/wiki/Iterated_logarithm"><em>logaritmul iterat</em></a>, care
+            pentru valori rezonabile ale lui <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">N</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.68333em; vertical-align: 0em;"></span><span
+                                style="margin-right: 0.10903em;"
+                                class="mord mathnormal">N</span></span></span></span></span> (zeci de milioane) nu
+            depaseste valoarea <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>5</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">5</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">5</span></span></span></span></span>.</p>
+        <h3 id="problema-echivalenta">Problema echivalenta</h3>
+        <p>Consideram un graf cu <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">N</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.68333em; vertical-align: 0em;"></span><span
+                                style="margin-right: 0.10903em;"
+                                class="mord mathnormal">N</span></span></span></span></span> noduri. Avem update-uri de
+            forma: <code>(a, b)</code>: se adauga o muchie de la nodul <code>a</code> la nodul <code>b</code> si
+            query-uri de forma <code>(a, b)</code>: sunt <code>a</code> si <code>b</code> in aceeasi componenta conexa?
+        </p>
+        <p>Problema se rezolva cu ajutorul padurilor de multimi disjuncte. Multimea corespunde acum unei componente
+            conexe. Update-ul este de fapt un <code>JOIN</code> in care reunim componentele conexe ale lui
+            <code>a</code> si <code>b</code>, iar query-ul este acelasi ca mai devreme.</p>
+        <h3 id="notá-béne">NOTÁ BÉNE</h3>
+        <p>Tehnica de a lega arborele mai “usor” de arborele mai “greu” (ca numar de noduri) mai poarta numele de
+            “reuniune dupa greutate”. In alte variante de implementare ale algoritmului puteti intalni notiunea de
+            “reuniune dupa rang”. Rangul unui arbore reprezinta adancimea maxima a unei frunze, iar la <code>JOIN</code>
+            se leaga arborele cu rang mai mic de arborele cu rang mai mare. Doar atunci cand arborii au acelasi rang,
+            dupa unire, radacina rezultata va capata un rang mai mare cu <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>1</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">1</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">1</span></span></span></span></span>. Complexitatea operatiilor ramane
+            aceeasi, iar demonstratia pentru complexitatea <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>l</mi>
+                                    <mi>o</mi>
+                                    <mi>g</mi>
+                                    <mi>N</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(logN)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.02778em;" class="mord mathnormal">O</span><span
+                                class="mopen">(</span><span style="margin-right: 0.01968em;"
+                                class="mord mathnormal">l</span><span class="mord mathnormal">o</span><span
+                                style="margin-right: 0.03588em;" class="mord mathnormal">g</span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mclose">)</span></span></span></span></span> (adica fara compresia drumului) este
+            foarte asemanatoare, de aceea va propun sa o realizati singuri :)</p>
+        <h2 id="probleme-propuse">Probleme propuse</h2>
+        <h3 id="bile-infoarena">1. Bile (<a href="https://infoarena.ro/problema/bile">infoarena</a>)</h3>
+        <p>Structura bilelor poate fi vazuta ca un graf, in care bilele de pe masa sunt noduri, iar muchiile corespund
+            perechilor de bile adiacente pe linie sau coloana.</p>
+        <p>In problema, la fiecare pas se elimina un nod impreuna cu muchiile adiacente si suntem intrebati cate
+            componente conexe are graful rezultat. Pusa astfel, problema este foarte dificila, insa avem un avantaj:
+            putem raspunde la intrebari in orice ordine dorim, iar la final le afisam in ordinea ceruta.</p>
+        <p>Ideea care ne aduce solutia este sa procesam toate operatiile in ordine inversa, cu alte cuvinte in loc sa
+            avem operatii de eliminare a bilelor, adaugam bile.</p>
+        <p>Pornim de la masa goala (fara nicio bila), iar la fiecare pas o bila este adaugata la pozitia <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>i</mi>
+                                    <mo separator="true">,</mo>
+                                    <mi>j</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">(i, j)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span
+                                class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span style="margin-right: 0.05724em;"
+                                class="mord mathnormal">j</span><span
+                                class="mclose">)</span></span></span></span></span>, ne uitam la cei <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>4</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">4</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">4</span></span></span></span></span> vecini ai pozitiei actuale si in cazul
+            in care avem deja bile acolo adaugam muchie intre nodurile corespunzatoare bilei noi si vecinei sale. Putem
+            mentine componentele conexe folosind paduri de multimi disjunte. Complexitatea solutiei este <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo stretchy="false">(</mo>
+                                    <msup>
+                                        <mi>N</mi>
+                                        <mn>2</mn>
+                                    </msup>
+                                    <mi>l</mi>
+                                    <mi>o</mi>
+                                    <msup>
+                                        <mi>g</mi>
+                                        <mo>∗</mo>
+                                    </msup>
+                                    <mi>N</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(N^2log^*N)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1.06411em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.02778em;" class="mord mathnormal">O</span><span
+                                class="mopen">(</span><span class="mord"><span style="margin-right: 0.10903em;"
+                                    class="mord mathnormal">N</span><span class="msupsub"><span class="vlist-t"><span
+                                            class="vlist-r"><span class="vlist" style="height: 0.814108em;"><span
+                                                    class="" style="top: -3.063em; margin-right: 0.05em;"><span
+                                                        class="pstrut" style="height: 2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                style="margin-right: 0.01968em;" class="mord mathnormal">l</span><span
+                                class="mord mathnormal">o</span><span class="mord"><span
+                                    style="margin-right: 0.03588em;" class="mord mathnormal">g</span><span
+                                    class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                style="height: 0.688696em;"><span class=""
+                                                    style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut"
+                                                        style="height: 2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mbin mtight">∗</span></span></span></span></span></span></span></span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mclose">)</span></span></span></span></span>.</p>
+        <p>Ca indicatie de implementare, putem identifica nodurile prin linia si coloana matricei. Puteti salva
+            structura de paduri astfel:</p>
+        <pre class=" language-cpp"><code class="prism  language-cpp">pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&gt;</span> T<span class="token punctuation">[</span>MAXN<span class="token punctuation">]</span><span class="token punctuation">[</span>MAXN<span class="token punctuation">]</span><span class="token punctuation">;</span>  <span class="token comment">// salveaza parintii</span>
+<span class="token keyword">int</span> SZ<span class="token punctuation">[</span>MAXN<span class="token punctuation">]</span><span class="token punctuation">[</span>MAXN<span class="token punctuation">]</span><span class="token punctuation">;</span>            <span class="token comment">// dimensiunea arborelui cu radacina (i, j)</span>
+</code></pre>
+        <h3 id="banana-infoarena">2. Banana (<a href="https://www.infoarena.ro/problema/banana">infoarena</a>)</h3>
+        <p>Problema ne cere sa determinam cele mai mari <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>K</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">K</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.68333em; vertical-align: 0em;"></span><span
+                                style="margin-right: 0.07153em;"
+                                class="mord mathnormal">K</span></span></span></span></span> componente conexe ale
+            grafului de bananieri. Putem deci folosi paduri de multimi disjuncte pentru a determina aceste componente,
+            pe masura ce detectam muchiile dintre bananieri (doi bananieri au o muchie intre ei daca sunt adiacenti pe
+            linie sau coloana).</p>
+        <p>Dificultatea sta in a determina care bananieri sunt adiacenti, intrucat limitele nu ne permit sa mentinem o
+            matrice. Putem insa sa sortam bananierii dupa linie si in caz de egalitate dupa coloana, determinand usor
+            bananierii adiacenti pe orizontala. Asemanator putem determina si bananierii vecini pe verticala printr-o
+            alta sortare.</p>
+        <p>Complexitatea finala este <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>N</mi>
+                                    <mi>l</mi>
+                                    <mi>o</mi>
+                                    <mi>g</mi>
+                                    <mi>N</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(NlogN)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.02778em;" class="mord mathnormal">O</span><span
+                                class="mopen">(</span><span style="margin-right: 0.01968em;"
+                                class="mord mathnormal">Nl</span><span class="mord mathnormal">o</span><span
+                                style="margin-right: 0.03588em;" class="mord mathnormal">g</span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mclose">)</span></span></span></span></span> din cauza celor doua sortari.</p>
+        <h3 id="secvmax-infoarena">3. Secvmax (<a href="https://www.infoarena.ro/problema/secvmax">infoarena</a>)</h3>
+        <p>Prima observatie este ca putem rezolva query-urile in orice ordine dorim, iar la final sa afisam raspunsul
+            pentru toate. Veti mai auzi expresia: rezolvam query-urile <em>offline</em>.</p>
+        <p>Vom sorta toate query-urile crescator dupa <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>Q</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">Q</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.87777em; vertical-align: -0.19444em;"></span><span
+                                class="mord mathnormal">Q</span></span></span></span></span> si separat vom sorta si
+            toate valorile din sir crescator. Consideram graful in care nodurile sunt pozitiile din sir, iar muchii pot
+            exista doar intre pozitii adiacente.</p>
+        <p>Parcurgem query-urile in ordinea sortarii. Fie <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>Q</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">Q</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.87777em; vertical-align: -0.19444em;"></span><span
+                                class="mord mathnormal">Q</span></span></span></span></span> valoarea pentru query-ul
+            curent. Consideram active toate pozitiile cu valori mai mici sau egale decat <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>Q</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">Q</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.87777em; vertical-align: -0.19444em;"></span><span
+                                class="mord mathnormal">Q</span></span></span></span></span>. Valorile mai mici decat
+            query-ul anterior sunt deja active, deci la acest pas activam si valorile mai mari decat query-ul anterior
+            dar mai mici sau egale decat <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>Q</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">Q</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.87777em; vertical-align: -0.19444em;"></span><span
+                                class="mord mathnormal">Q</span></span></span></span></span> (de aceea am determinat si
+            sortarea valorilor din sir).</p>
+        <p>Activarea unei pozitii inseamna sa adaugam nodul pozitiei in graf si sa adaugam muchiile catre vecinii sai
+            activi (aproape identic cu operatia de adaugare de la problema <em>Bile</em>). Folosim paduri de multimi
+            disjuncte pentru mentine componentele conexe si dimensiunile lor.</p>
+        <p>Dupa ce am activat nodurile de la pasul pentru query-ul <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>Q</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">Q</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.87777em; vertical-align: -0.19444em;"></span><span
+                                class="mord mathnormal">Q</span></span></span></span></span>, componentele conexe nu
+            sunt altceva decat intervalele compacte ce contin valori <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mo>≤</mo>
+                                    <mi>Q</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\leq Q</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.77194em; vertical-align: -0.13597em;"></span><span
+                                class="mrel">≤</span><span class="mspace"
+                                style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut"
+                                style="height: 0.87777em; vertical-align: -0.19444em;"></span><span
+                                class="mord mathnormal">Q</span></span></span></span></span>, deci putem spune imediat
+            care este intervalul de lungime maxima.</p>
+        <p>Complexitate: <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>N</mi>
+                                    <mi>l</mi>
+                                    <mi>o</mi>
+                                    <mi>g</mi>
+                                    <mi>N</mi>
+                                    <mo>+</mo>
+                                    <mi>M</mi>
+                                    <mi>l</mi>
+                                    <mi>o</mi>
+                                    <mi>g</mi>
+                                    <mi>M</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(NlogN + MlogM)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.02778em;" class="mord mathnormal">O</span><span
+                                class="mopen">(</span><span style="margin-right: 0.01968em;"
+                                class="mord mathnormal">Nl</span><span class="mord mathnormal">o</span><span
+                                style="margin-right: 0.03588em;" class="mord mathnormal">g</span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span class="mspace"
+                                style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace"
+                                style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.01968em;" class="mord mathnormal">Ml</span><span
+                                class="mord mathnormal">o</span><span style="margin-right: 0.03588em;"
+                                class="mord mathnormal">g</span><span style="margin-right: 0.10903em;"
+                                class="mord mathnormal">M</span><span
+                                class="mclose">)</span></span></span></span></span> de la sortari.</p>
+        <h3 id="curcubeu-infoarena">4. Curcubeu (<a href="https://www.infoarena.ro/problema/curcubeu">infoarena</a>)
+        </h3>
+        <p>Vom considera colorarile incepand cu ultima. Fie <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <msub>
+                                        <mi>C</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                </mrow>
+                                <annotation encoding="application/x-tex">C_i</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.83333em; vertical-align: -0.15em;"></span><span class="mord"><span
+                                    style="margin-right: 0.07153em;" class="mord mathnormal">C</span><span
+                                    class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height: 0.311664em;"><span class=""
+                                                    style="top: -2.55em; margin-left: -0.07153em; margin-right: 0.05em;"><span
+                                                        class="pstrut" style="height: 2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mathnormal mtight">i</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height: 0.15em;"><span
+                                                    class=""></span></span></span></span></span></span></span></span></span></span>
+            culoarea curenta. Parcurgem intervalul asociat ei si de fiecare data cand gasim o casuta necolorata ii
+            asociem valoarea <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <msub>
+                                        <mi>C</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                </mrow>
+                                <annotation encoding="application/x-tex">C_i</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.83333em; vertical-align: -0.15em;"></span><span class="mord"><span
+                                    style="margin-right: 0.07153em;" class="mord mathnormal">C</span><span
+                                    class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height: 0.311664em;"><span class=""
+                                                    style="top: -2.55em; margin-left: -0.07153em; margin-right: 0.05em;"><span
+                                                        class="pstrut" style="height: 2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mathnormal mtight">i</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height: 0.15em;"><span
+                                                    class=""></span></span></span></span></span></span></span></span></span></span>.
+            Aceasta solutie are complexitatea <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo stretchy="false">(</mo>
+                                    <msup>
+                                        <mi>N</mi>
+                                        <mn>2</mn>
+                                    </msup>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(N^2)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1.06411em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.02778em;" class="mord mathnormal">O</span><span
+                                class="mopen">(</span><span class="mord"><span style="margin-right: 0.10903em;"
+                                    class="mord mathnormal">N</span><span class="msupsub"><span class="vlist-t"><span
+                                            class="vlist-r"><span class="vlist" style="height: 0.814108em;"><span
+                                                    class="" style="top: -3.063em; margin-right: 0.05em;"><span
+                                                        class="pstrut" style="height: 2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                class="mclose">)</span></span></span></span></span> si obtine in jur de <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mn>20</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">20</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.64444em; vertical-align: 0em;"></span><span
+                                class="mord">20</span></span></span></span></span> de puncte.</p>
+        <p>Analizand solutia anterioara, observam ca vom parcuge de foarte multe ori casute deja colorate, lucru inutil
+            si consumator de timp.</p>
+        <p>Pentru fiecare pozitie <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>i</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">i</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.65952em; vertical-align: 0em;"></span><span
+                                class="mord mathnormal">i</span></span></span></span></span> vom mentine o valoare <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>i</mi>
+                                    <mo stretchy="false">]</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">Next[i]</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span
+                                class="mord mathnormal">t</span><span class="mopen">[</span><span
+                                class="mord mathnormal">i</span><span
+                                class="mclose">]</span></span></span></span></span>, semnficand faptul ca intervalul
+            <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>i</mi>
+                                    <mo separator="true">,</mo>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>i</mi>
+                                    <mo stretchy="false">]</mo>
+                                    <mo>−</mo>
+                                    <mn>1</mn>
+                                    <mo stretchy="false">]</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">[i, Next[i]-1]</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">[</span><span
+                                class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace"
+                                style="margin-right: 0.166667em;"></span><span style="margin-right: 0.10903em;"
+                                class="mord mathnormal">N</span><span class="mord mathnormal">e</span><span
+                                class="mord mathnormal">x</span><span class="mord mathnormal">t</span><span
+                                class="mopen">[</span><span class="mord mathnormal">i</span><span
+                                class="mclose">]</span><span class="mspace"
+                                style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace"
+                                style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span class="mord">1</span><span
+                                class="mclose">]</span></span></span></span></span> contine doar casute colorate (ca
+            initializare, cand nu avem nicio casuta colorata inca, <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>i</mi>
+                                    <mo stretchy="false">]</mo>
+                                    <mo>=</mo>
+                                    <mi>i</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">Next[i] = i</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span
+                                class="mord mathnormal">t</span><span class="mopen">[</span><span
+                                class="mord mathnormal">i</span><span class="mclose">]</span><span class="mspace"
+                                style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace"
+                                style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut"
+                                style="height: 0.65952em; vertical-align: 0em;"></span><span
+                                class="mord mathnormal">i</span></span></span></span></span>). Astfel, la colorarile
+            urmatoare, vom putea “sari” peste secvente intregi de pozitii anterior colorate.</p>
+        <p>Indicatii de implementare:</p>
+        <pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">int</span> left<span class="token punctuation">[</span>MAXN<span class="token punctuation">]</span><span class="token punctuation">,</span> right<span class="token punctuation">[</span>MAXN<span class="token punctuation">]</span><span class="token punctuation">,</span> C<span class="token punctuation">[</span>MAXN<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// datele despre colorari</span>
+<span class="token keyword">int</span> Next<span class="token punctuation">[</span>MAXN<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// cu semnificatia de mai sus</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">int</span> <span class="token function">find_next</span><span class="token punctuation">(</span><span class="token keyword">int</span> pos<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token comment">// gaseste prima pozitie la dreapta lui pos care nu este colorata</span>
+	<span class="token keyword">int</span> aux <span class="token operator">=</span> pos<span class="token punctuation">;</span>
+	<span class="token comment">// mergem din Next in Next pana ajungem la o pozitie necolorata</span>
+	<span class="token keyword">while</span> <span class="token punctuation">(</span>Next<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">!=</span> pos<span class="token punctuation">)</span>
+		pos <span class="token operator">=</span> Next<span class="token punctuation">[</span>pos<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token comment">// cand ajungem la pos == Next[pos] inseamna ca pos nu este colorata</span>
+	<span class="token keyword">int</span> res <span class="token operator">=</span> pos<span class="token punctuation">;</span>
+	pos <span class="token operator">=</span> aux<span class="token punctuation">;</span>
+	<span class="token comment">// legam toate pozitiile prin care am trecut direct</span>
+	<span class="token comment">// de prima pozitie necolorata determinata</span>
+	<span class="token keyword">while</span> <span class="token punctuation">(</span>Next<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">!=</span> res<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		aux <span class="token operator">=</span> Next<span class="token punctuation">[</span>pos<span class="token punctuation">]</span><span class="token punctuation">;</span>
+		Next<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> res<span class="token punctuation">;</span>
+		pos <span class="token operator">=</span> aux<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> res<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">solve</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token comment">// initial toate pozitiile sunt necolorate</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> N<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+		Next<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token punctuation">;</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> N <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token function">find_next</span><span class="token punctuation">(</span>left<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> right<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span> j <span class="token operator">=</span> Next<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			solutie<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> C<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+			<span class="token comment">// l-am colorat pe j, cautam urmatoarea pozitie necolorata</span>
+			Next<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">find_next</span><span class="token punctuation">(</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	
+<span class="token punctuation">}</span>
+</code></pre>
+        <p>Observam ca <code>find_next</code> implementeaza metoda de compresie a drumului, pe care am intalnit-o mai
+            devreme la padurile de multimi disjuncte. Astfel complexitatea acestei implementari se amortizeaza la <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>N</mi>
+                                    <mi>l</mi>
+                                    <mi>o</mi>
+                                    <msup>
+                                        <mi>g</mi>
+                                        <mo>∗</mo>
+                                    </msup>
+                                    <mi>N</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(Nlog^*N)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.02778em;" class="mord mathnormal">O</span><span
+                                class="mopen">(</span><span style="margin-right: 0.01968em;"
+                                class="mord mathnormal">Nl</span><span class="mord mathnormal">o</span><span
+                                class="mord"><span style="margin-right: 0.03588em;"
+                                    class="mord mathnormal">g</span><span class="msupsub"><span class="vlist-t"><span
+                                            class="vlist-r"><span class="vlist" style="height: 0.688696em;"><span
+                                                    class="" style="top: -3.063em; margin-right: 0.05em;"><span
+                                                        class="pstrut" style="height: 2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mbin mtight">∗</span></span></span></span></span></span></span></span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mclose">)</span></span></span></span></span>.</p>
+        <h3 id="jstc-infoarena">5. Jstc (<a href="https://www.infoarena.ro/problema/jstc">infoarena</a>)</h3>
+        <p>Solutia acestei probleme se aseamana cu rezolvarea problemei <em>Curcubeu</em>, de aceea va recomand sa
+            abordati acea problema inainte.</p>
+        <p>Prima observatie necesara in rezolvarea problemei este faptul ca stiva este intotdeauna crescatoare.</p>
+        <p>A doua observatie este ca raspunsul pentru un anumit numar <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>x</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.43056em; vertical-align: 0em;"></span><span
+                                class="mord mathnormal">x</span></span></span></span></span> poate doar sa creasca dupa
+            diferite operatii de tip insert sau erase (el poate sa fie si <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mo>−</mo>
+                                    <mn>1</mn>
+                                </mrow>
+                                <annotation encoding="application/x-tex">-1</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.72777em; vertical-align: -0.08333em;"></span><span
+                                class="mord">−</span><span class="mord">1</span></span></span></span></span> dar acesta
+            este un caz particular usor de rezolvat). Daca raspunsul la momentul actual este <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>y</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">y</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.625em; vertical-align: -0.19444em;"></span><span
+                                style="margin-right: 0.03588em;"
+                                class="mord mathnormal">y</span></span></span></span></span> (<span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>y</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">y</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.625em; vertical-align: -0.19444em;"></span><span
+                                style="margin-right: 0.03588em;"
+                                class="mord mathnormal">y</span></span></span></span></span> fiind cel mai mic numar din
+            stiva, mai mare sau egal cu <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>x</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.43056em; vertical-align: 0em;"></span><span
+                                class="mord mathnormal">x</span></span></span></span></span>), mai tarziu se vor adauga
+            in stiva doar valori mai mari, iar daca cumva <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>y</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">y</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.625em; vertical-align: -0.19444em;"></span><span
+                                style="margin-right: 0.03588em;"
+                                class="mord mathnormal">y</span></span></span></span></span> este eliminat, raspunsul nu
+            poate deveni decat mai mare.</p>
+        <p>Vom volosi inca o data tehnica de compresie a drumurilor de la padurile de multimi disjuncte. Vom tine pentru
+            fiecare numar <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>x</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.43056em; vertical-align: 0em;"></span><span
+                                class="mord mathnormal">x</span></span></span></span></span>, care poate aparea la
+            query, <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>x</mi>
+                                    <mo stretchy="false">]</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">Next[x]</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span
+                                class="mord mathnormal">t</span><span class="mopen">[</span><span
+                                class="mord mathnormal">x</span><span
+                                class="mclose">]</span></span></span></span></span> ce reprezinta un numar mai mare ca
+            <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>x</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.43056em; vertical-align: 0em;"></span><span
+                                class="mord mathnormal">x</span></span></span></span></span> dar care sigur nu sare de
+            urmatorul numar mai mare ca <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>x</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.43056em; vertical-align: 0em;"></span><span
+                                class="mord mathnormal">x</span></span></span></span></span> ce se afla momentan in
+            stiva. Conform celei de-a doua observatii, <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>x</mi>
+                                    <mo stretchy="false">]</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">Next[x]</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span
+                                class="mord mathnormal">t</span><span class="mopen">[</span><span
+                                class="mord mathnormal">x</span><span
+                                class="mclose">]</span></span></span></span></span> poate doar sa creasca in urma
+            diverselor operatii.</p>
+        <p>Acum pentru a cauta raspunsul si anume primul numar din stiva mai mare sau egal cu <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>x</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.43056em; vertical-align: 0em;"></span><span
+                                class="mord mathnormal">x</span></span></span></span></span> vom parcurge pe rand <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>x</mi>
+                                    <mo stretchy="false">]</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">Next[x]</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span
+                                class="mord mathnormal">t</span><span class="mopen">[</span><span
+                                class="mord mathnormal">x</span><span
+                                class="mclose">]</span></span></span></span></span>, <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>x</mi>
+                                    <mo stretchy="false">]</mo>
+                                    <mo stretchy="false">]</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">Next[Next[x]]</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span
+                                class="mord mathnormal">t</span><span class="mopen">[</span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span
+                                class="mord mathnormal">t</span><span class="mopen">[</span><span
+                                class="mord mathnormal">x</span><span
+                                class="mclose">]]</span></span></span></span></span>, <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>x</mi>
+                                    <mo stretchy="false">]</mo>
+                                    <mo stretchy="false">]</mo>
+                                    <mo stretchy="false">]</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">Next[Next[Next[x]]]</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span
+                                class="mord mathnormal">t</span><span class="mopen">[</span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span
+                                class="mord mathnormal">t</span><span class="mopen">[</span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span
+                                class="mord mathnormal">t</span><span class="mopen">[</span><span
+                                class="mord mathnormal">x</span><span
+                                class="mclose">]]]</span></span></span></span></span>, <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mo>…</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\ldots</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.12em; vertical-align: 0em;"></span><span
+                                class="minner">…</span></span></span></span></span> pana cand gasim un numar care se
+            afla in stiva (asemanator cu problema <em>Curcubeu</em>, putem retine aceasta informatie avand <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>x</mi>
+                                    <mo stretchy="false">]</mo>
+                                    <mo>=</mo>
+                                    <mi>x</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">Next[x] = x</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span
+                                class="mord mathnormal">t</span><span class="mopen">[</span><span
+                                class="mord mathnormal">x</span><span class="mclose">]</span><span class="mspace"
+                                style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace"
+                                style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut"
+                                style="height: 0.43056em; vertical-align: 0em;"></span><span
+                                class="mord mathnormal">x</span></span></span></span></span>, daca <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>x</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.43056em; vertical-align: 0em;"></span><span
+                                class="mord mathnormal">x</span></span></span></span></span> se afla in stiva).</p>
+        <p>Tot conform celei de a doua observatii, putem acum sa modificam valorile <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>x</mi>
+                                    <mo stretchy="false">]</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">Next[x]</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span
+                                class="mord mathnormal">t</span><span class="mopen">[</span><span
+                                class="mord mathnormal">x</span><span
+                                class="mclose">]</span></span></span></span></span>, <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>x</mi>
+                                    <mo stretchy="false">]</mo>
+                                    <mo stretchy="false">]</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">Next[Next[x]]</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span
+                                class="mord mathnormal">t</span><span class="mopen">[</span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span
+                                class="mord mathnormal">t</span><span class="mopen">[</span><span
+                                class="mord mathnormal">x</span><span
+                                class="mclose">]]</span></span></span></span></span>, <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>N</mi>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mo stretchy="false">[</mo>
+                                    <mi>x</mi>
+                                    <mo stretchy="false">]</mo>
+                                    <mo stretchy="false">]</mo>
+                                    <mo stretchy="false">]</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">Next[Next[Next[x]]]</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span
+                                class="mord mathnormal">t</span><span class="mopen">[</span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span
+                                class="mord mathnormal">t</span><span class="mopen">[</span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span
+                                class="mord mathnormal">t</span><span class="mopen">[</span><span
+                                class="mord mathnormal">x</span><span
+                                class="mclose">]]]</span></span></span></span></span>, <span class="katex--inline"><span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mo>…</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\ldots</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.12em; vertical-align: 0em;"></span><span
+                                class="minner">…</span></span></span></span></span> in raspunsul pentru intrebarea <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>x</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.43056em; vertical-align: 0em;"></span><span
+                                class="mord mathnormal">x</span></span></span></span></span>. Astfel drumurile se vor
+            “compacta” si nu vom parcurge de prea multe ori aceleasi drumuri.</p>
+        <p>Obtinem astfel complexitatea de <span class="katex--inline"><span class="katex"><span
+                        class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>l</mi>
+                                    <mi>o</mi>
+                                    <msup>
+                                        <mi>g</mi>
+                                        <mo>∗</mo>
+                                    </msup>
+                                    <mi>N</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(log^*N)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 1em; vertical-align: -0.25em;"></span><span
+                                style="margin-right: 0.02778em;" class="mord mathnormal">O</span><span
+                                class="mopen">(</span><span style="margin-right: 0.01968em;"
+                                class="mord mathnormal">l</span><span class="mord mathnormal">o</span><span
+                                class="mord"><span style="margin-right: 0.03588em;"
+                                    class="mord mathnormal">g</span><span class="msupsub"><span class="vlist-t"><span
+                                            class="vlist-r"><span class="vlist" style="height: 0.688696em;"><span
+                                                    class="" style="top: -3.063em; margin-right: 0.05em;"><span
+                                                        class="pstrut" style="height: 2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mbin mtight">∗</span></span></span></span></span></span></span></span><span
+                                style="margin-right: 0.10903em;" class="mord mathnormal">N</span><span
+                                class="mclose">)</span></span></span></span></span> per query, unde cu <span
+                class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">N</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.68333em; vertical-align: 0em;"></span><span
+                                style="margin-right: 0.10903em;"
+                                class="mord mathnormal">N</span></span></span></span></span> am notat valoarea maxima
+            inserata in stiva (<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mo>≤</mo>
+                                    <mn>1</mn>
+                                    <msup>
+                                        <mn>0</mn>
+                                        <mn>6</mn>
+                                    </msup>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\leq 10^6</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height: 0.77194em; vertical-align: -0.13597em;"></span><span
+                                class="mrel">≤</span><span class="mspace"
+                                style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut"
+                                style="height: 0.814108em; vertical-align: 0em;"></span><span class="mord">1</span><span
+                                class="mord"><span class="mord">0</span><span class="msupsub"><span
+                                        class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                style="height: 0.814108em;"><span class=""
+                                                    style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut"
+                                                        style="height: 2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span></span>).
+        </p>
+        <h3 id="egal-infoarena">6. Egal (<a href="https://www.infoarena.ro/problema/egal">infoarena</a>)</h3>
+    </div>
+</body>
+
+</html>
